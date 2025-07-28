@@ -38,10 +38,7 @@ docker build -t adobe-outline-extractor .
 ```
 ###  Run the Container
 ```bash
-docker run --rm --network none \
-  -v "$PWD/app/input":/project/app/input \
-  -v "$PWD/app/output":/project/app/output \
-  adobe-outline-extractor
+docker run --rm --network none -v "${PWD}\app\input:/project/app/input" -v "${PWD}\app\output:/project/app/output" adobe-outline-extractor
 ```
 > Output is saved in app/output. You can add multiple PDFs in app/input.
 
