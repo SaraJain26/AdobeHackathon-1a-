@@ -38,7 +38,7 @@ docker build -t adobe-outline-extractor .
 ```
 ###  Run the Container
 ```bash
-docker run --rm \
+docker run --rm --network none \
   -v "$PWD/app/input":/project/app/input \
   -v "$PWD/app/output":/project/app/output \
   adobe-outline-extractor
