@@ -10,6 +10,27 @@
 - Runs fully offline, fast and memory-efficient.
 - Compatible with complex documents.
 
+## Approach
+This tool **does not rely on machine learning**. Instead, it combines a rule-based system using:
+- Text span extraction from PDF using PyMuPDF (fitz)
+- Analysis of font size distribution:
+  - `avg`, `q75` , `q90` thresholds across first 50 pages.
+- Regex-based patterns to match structural headings:
+  - Examples: 1. Introduction, 3.1 Scope, Appendix, 第1章, etc.
+- Filters out repetitive boilerplate:
+  - Footers, headers like Page X of Y, dates, and publisher info
+- Post-processing:
+  - De-duplication, hierarchy correction (e.g., avoid skipping from H1 → H3)
+
+## Models or Libraries Used
+| Tool / Library                                | Purpose                                                  |
+| --------------------------------------------- | -------------------------------------------------------- |
+| `PyMuPDF (fitz)`                              | PDF parsing, text span extraction                        |
+| `re` (Regex)                                  | Structural pattern matching                              |
+| `logging`, `os`, `json`, `concurrent.futures` | Core logic, I/O, concurrency                             |
+| ❌ **No ML models used**                       | Ensures fast, deterministic output without training data |
+
+
 ## 🐳 Run via Docker (Recommended)
 ### Build the Docker Image
 ```bash
